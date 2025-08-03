@@ -15,25 +15,23 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: #e8e4d3;
-            min-height: 100vh;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         /* Header */
         header {
-            padding: 2rem 0;
+            padding: 4rem 0 2rem;
             text-align: center;
-            position: relative;
         }
 
         .logo {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: 800;
             background: linear-gradient(45deg, #e8e4d3, #f5f1e8);
             background-clip: text;
@@ -44,37 +42,22 @@
         }
 
         .tagline {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             color: #b8b8b8;
             max-width: 600px;
-            margin: 0 auto;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+            margin: 0 auto 3rem;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 4rem 0;
-            position: relative;
+            padding: 2rem 0;
         }
 
-        .pet-container {
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 3rem;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .pet-container:hover {
-            transform: scale(1.05);
-        }
-
-        .pet {
-            width: 100%;
-            height: 100%;
+        .pet-display {
+            width: clamp(200px, 40vw, 280px);
+            height: clamp(200px, 40vw, 280px);
+            margin: 0 auto 2rem;
             background: linear-gradient(135deg, #4a4a4a, #6a6a6a);
             border-radius: 50%;
             display: flex;
@@ -85,14 +68,14 @@
             overflow: hidden;
         }
 
-        .pet img {
-            width: 80%;
-            height: 80%;
+        .pet-display img {
+            width: 75%;
+            height: 75%;
             object-fit: contain;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.3));
         }
 
-        .pet::before {
+        .pet-display::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -100,14 +83,19 @@
             width: 200%;
             height: 200%;
             background: linear-gradient(45deg, transparent, rgba(232, 228, 211, 0.1), transparent);
-            animation: shimmer 3s infinite;
+            animation: shimmer 4s infinite;
         }
 
-        .cta-button {
+        /* Download Button */
+        .download-section {
+            margin: 3rem 0;
+        }
+
+        .download-button {
             background: linear-gradient(135deg, #e8e4d3, #d4cfb8);
             color: #1a1a1a;
             border: none;
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             font-size: 1.1rem;
             font-weight: 600;
             border-radius: 50px;
@@ -118,83 +106,85 @@
             display: inline-block;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
+        .download-button:hover {
+            transform: translateY(-2px);
             box-shadow: 0 15px 35px rgba(232, 228, 211, 0.3);
             background: linear-gradient(135deg, #f0ece0, #e0dbc7);
+        }
+
+        .coming-soon {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 1rem;
         }
 
         /* Features */
         .features {
             padding: 4rem 0;
-            background: rgba(255, 255, 255, 0.02);
             margin: 2rem 0;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
         }
 
-        .features-grid {
+        .features-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .feature {
-            text-align: center;
-            padding: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
-            transition: transform 0.3s ease;
             border: 1px solid rgba(232, 228, 211, 0.1);
         }
 
-        .feature:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
+            font-size: 2rem;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
         }
 
-        .feature h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+        .feature-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
             color: #e8e4d3;
         }
 
-        .feature p {
+        .feature-content p {
             color: #b8b8b8;
-            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
-        /* Stats */
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-        }
-
-        .stat {
+        /* About Section */
+        .about {
+            padding: 3rem 0;
             text-align: center;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .about h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
             color: #e8e4d3;
-            display: block;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: #888;
-            text-transform: lowercase;
+        .about-content {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(232, 228, 211, 0.1);
+        }
+
+        .about-content p {
+            color: #b8b8b8;
+            margin-bottom: 1rem;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
         }
 
         /* Footer */
@@ -202,7 +192,7 @@
             text-align: center;
             padding: 3rem 0;
             border-top: 1px solid rgba(232, 228, 211, 0.1);
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
 
         .footer-links {
@@ -217,93 +207,62 @@
             color: #b8b8b8;
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
             color: #e8e4d3;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .footer-credit {
+            color: #666;
+            font-size: 0.8rem;
+            margin-top: 1rem;
         }
 
+        /* Animations */
         @keyframes shimmer {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        .bounce {
-            animation: bounce 2s infinite;
-        }
-
         /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
+            .container {
+                padding: 0 16px;
             }
             
-            .pet-container {
-                width: 250px;
-                height: 250px;
+            header {
+                padding: 3rem 0 1.5rem;
             }
             
-            .pet {
-                font-size: 6rem;
+            .feature {
+                flex-direction: column;
+                text-align: center;
             }
             
-            .stats {
-                gap: 1.5rem;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
+            .feature-icon {
+                margin-top: 0;
             }
             
             .footer-links {
                 flex-direction: column;
                 gap: 1rem;
             }
+            
+            .about-content {
+                padding: 1.5rem;
+            }
         }
 
-        /* Floating particles effect */
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(232, 228, 211, 0.3);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float 6s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px;
             }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px);
-                opacity: 0;
+            
+            .download-button {
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -317,49 +276,60 @@
 
         <main>
             <section class="hero">
-                <div class="pet-container" onclick="feedPet()">
-                    <div class="pet" id="pet">
-                        <img src="neutral.png" alt="tamagrey" id="pet-image">
-                    </div>
+                <div class="pet-display">
+                    <img src="neutral.png" alt="tamagrey">
                 </div>
                 
-                <div class="stats">
-                    <div class="stat">
-                        <span class="stat-number" id="focus-time">0</span>
-                        <span class="stat-label">minutes focused today</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" id="apps-blocked">0</span>
-                        <span class="stat-label">apps blocked</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number" id="pet-happiness">
-                            <img src="neutral.png" alt="mood" style="width: 40px; height: 40px; object-fit: contain;">
-                        </span>
-                        <span class="stat-label">pet mood</span>
-                    </div>
+                <div class="download-section">
+                    <a href="#" class="download-button" onclick="downloadApp()">download for ios</a>
+                    <p class="coming-soon">coming soon to the app store</p>
                 </div>
-
-                <a href="#" class="cta-button" onclick="startFocus()">start focusing</a>
             </section>
 
             <section class="features">
-                <div class="features-grid">
+                <div class="features-list">
                     <div class="feature">
                         <div class="feature-icon">🔒</div>
-                        <h3>block distracting apps</h3>
-                        <p>choose which apps distract you most and we'll block them while you focus. your tamagrey gets stronger with every minute you stay focused.</p>
+                        <div class="feature-content">
+                            <h3>block distracting apps</h3>
+                            <p>choose which apps distract you most and tamagrey will block them during focus sessions. your pet gets healthier with every focused minute.</p>
+                        </div>
                     </div>
+                    
                     <div class="feature">
                         <div class="feature-icon">⏰</div>
-                        <h3>track focus time</h3>
-                        <p>see exactly how much time you spend focused vs distracted. build better habits one focus session at a time.</p>
+                        <div class="feature-content">
+                            <h3>track focus time</h3>
+                            <p>see exactly how much time you spend focused vs distracted. build better digital habits one session at a time.</p>
+                        </div>
                     </div>
+                    
                     <div class="feature">
                         <div class="feature-icon">📊</div>
-                        <h3>detailed insights</h3>
-                        <p>understand your digital behavior with beautiful charts and stats. know which apps steal your attention most.</p>
+                        <div class="feature-content">
+                            <h3>detailed insights</h3>
+                            <p>understand your phone usage patterns with beautiful stats. know which apps steal your attention the most.</p>
+                        </div>
                     </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">🎮</div>
+                        <div class="feature-content">
+                            <h3>gamified wellness</h3>
+                            <p>caring for your virtual pet makes digital wellness fun and sustainable. no punishment, just positive reinforcement.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about">
+                <h2>about tamagrey</h2>
+                <div class="about-content">
+                    <p>tamagrey transforms screen time management into a caring, positive experience. instead of shame or punishment, you nurture a virtual pet that thrives when you focus.</p>
+                    
+                    <p>block distracting apps during work or study sessions, and watch your tamagrey grow healthier and happier. the longer you stay focused, the better your pet feels.</p>
+                    
+                    <p>it's digital wellness that actually feels good.</p>
                 </div>
             </section>
         </main>
@@ -370,113 +340,24 @@
                 <a href="#" onclick="showModal('terms')">terms of service</a>
                 <a href="#" onclick="showModal('contact')">contact</a>
             </div>
-            <p style="color: #666; font-size: 0.9rem;">made with focus and care</p>
+            <p class="footer-credit">made with focus and care</p>
         </footer>
     </div>
 
     <script>
-        // Pet interaction
-        let petMood = 0; // -2 = supersad, -1 = sad, 0 = neutral, 1 = happy, 2 = superhappy
-        let focusTime = 0;
-        let appsBlocked = 0;
-        
-        const petImages = {
-            '-2': 'supersad.png',
-            '-1': 'sad.png',
-            '0': 'neutral.png', 
-            '1': 'happy.png',
-            '2': 'superhappy.png'
-        };
-
-        function feedPet() {
-            const pet = document.getElementById('pet');
-            pet.classList.add('bounce');
-            
-            // Increase happiness temporarily
-            petMood = Math.min(2, petMood + 1);
-            updatePetMood();
-            
-            // Remove bounce effect after animation
-            setTimeout(() => {
-                pet.classList.remove('bounce');
-            }, 2000);
-            
-            // Reset mood after a while if not focusing
-            setTimeout(() => {
-                if (focusTime === 0) {
-                    petMood = Math.max(-2, petMood - 1);
-                    updatePetMood();
-                }
-            }, 5000);
-        }
-
-        function updatePetMood() {
-            const petImage = document.getElementById('pet-image');
-            const happinessDisplay = document.getElementById('pet-happiness');
-            
-            const imageSrc = petImages[petMood];
-            petImage.src = imageSrc;
-            happinessDisplay.innerHTML = `<img src="${imageSrc}" alt="mood" style="width: 40px; height: 40px; object-fit: contain;">`;
-        }
-
-        function startFocus() {
-            // Simulate starting focus mode
-            alert('focus mode would start here! 🎯\n\nthis would open the app to begin a focus session.');
-            
-            // Simulate some stats for demo
-            focusTime += Math.floor(Math.random() * 30) + 10;
-            appsBlocked += Math.floor(Math.random() * 5) + 1;
-            petMood = Math.min(2, petMood + 1);
-            
-            updateStats();
-            updatePetMood();
-        }
-
-        function updateStats() {
-            document.getElementById('focus-time').textContent = focusTime;
-            document.getElementById('apps-blocked').textContent = appsBlocked;
+        function downloadApp() {
+            alert('tamagrey is coming soon to the app store! 🎯\n\nwe\'re currently waiting for apple\'s approval for family controls permissions.');
         }
 
         function showModal(type) {
             const messages = {
-                privacy: 'privacy policy would be shown here.\n\nwe respect your privacy and only collect necessary data to help you focus better.',
-                terms: 'terms of service would be shown here.\n\nuse tamagrey responsibly to build better digital habits.',
-                contact: 'contact info would be shown here.\n\nreach out if you need help with your digital wellness journey.'
+                privacy: 'privacy policy\n\nwe respect your privacy and only collect necessary data to help you focus better. all data stays on your device.',
+                terms: 'terms of service\n\nuse tamagrey responsibly to build better digital habits. be kind to your virtual pet!',
+                contact: 'contact\n\nquestions? reach out at: anthonyverruijtx@hotmail.com\n\nwe\'d love to hear about your digital wellness journey.'
             };
             
             alert(messages[type]);
         }
-
-        // Create floating particles
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (Math.random() * 3 + 6) + 's';
-            document.body.appendChild(particle);
-            
-            // Remove particle after animation
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 9000);
-        }
-
-        // Create particles periodically
-        setInterval(createParticle, 2000);
-
-        // Initialize
-        updatePetMood();
-        updateStats();
-
-        // Add some initial stats for demo
-        setTimeout(() => {
-            focusTime = 127;
-            appsBlocked = 8;
-            updateStats();
-        }, 1000);
     </script>
 </body>
 </html>
