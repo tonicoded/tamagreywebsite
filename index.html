@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tamagrey - your digital pet survives only when you block distractions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e8e4d3;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #e8e4d3, #f5f1e8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #b8b8b8;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .pet-container {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 3rem;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .pet-container:hover {
+            transform: scale(1.05);
+        }
+
+        .pet {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4a4a4a, #6a6a6a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pet img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        .pet::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(232, 228, 211, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #e8e4d3, #d4cfb8);
+            color: #1a1a1a;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(232, 228, 211, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(232, 228, 211, 0.3);
+            background: linear-gradient(135deg, #f0ece0, #e0dbc7);
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            margin: 2rem 0;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(232, 228, 211, 0.1);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #e8e4d3;
+        }
+
+        .feature p {
+            color: #b8b8b8;
+            line-height: 1.6;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #e8e4d3;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: lowercase;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(232, 228, 211, 0.1);
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #b8b8b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #e8e4d3;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .pet-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .pet {
+                font-size: 6rem;
+            }
+            
+            .stats {
+                gap: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Floating particles effect */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(232, 228, 211, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="logo">tamagrey</h1>
+            <p class="tagline">your digital pet survives only when you block distractions</p>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="pet-container" onclick="feedPet()">
+                    <div class="pet" id="pet">
+                        <img src="neutral.png" alt="tamagrey" id="pet-image">
+                    </div>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number" id="focus-time">0</span>
+                        <span class="stat-label">minutes focused today</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="apps-blocked">0</span>
+                        <span class="stat-label">apps blocked</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="pet-happiness">
+                            <img src="neutral.png" alt="mood" style="width: 40px; height: 40px; object-fit: contain;">
+                        </span>
+                        <span class="stat-label">pet mood</span>
+                    </div>
+                </div>
+
+                <a href="#" class="cta-button" onclick="startFocus()">start focusing</a>
+            </section>
+
+            <section class="features">
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        <h3>block distracting apps</h3>
+                        <p>choose which apps distract you most and we'll block them while you focus. your tamagrey gets stronger with every minute you stay focused.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⏰</div>
+                        <h3>track focus time</h3>
+                        <p>see exactly how much time you spend focused vs distracted. build better habits one focus session at a time.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📊</div>
+                        <h3>detailed insights</h3>
+                        <p>understand your digital behavior with beautiful charts and stats. know which apps steal your attention most.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#" onclick="showModal('privacy')">privacy policy</a>
+                <a href="#" onclick="showModal('terms')">terms of service</a>
+                <a href="#" onclick="showModal('contact')">contact</a>
+            </div>
+            <p style="color: #666; font-size: 0.9rem;">made with focus and care</p>
+        </footer>
+    </div>
+
+    <script>
+        // Pet interaction
+        let petMood = 0; // -2 = supersad, -1 = sad, 0 = neutral, 1 = happy, 2 = superhappy
+        let focusTime = 0;
+        let appsBlocked = 0;
+        
+        const petImages = {
+            '-2': 'supersad.png',
+            '-1': 'sad.png',
+            '0': 'neutral.png', 
+            '1': 'happy.png',
+            '2': 'superhappy.png'
+        };
+
+        function feedPet() {
+            const pet = document.getElementById('pet');
+            pet.classList.add('bounce');
+            
+            // Increase happiness temporarily
+            petMood = Math.min(2, petMood + 1);
+            updatePetMood();
+            
+            // Remove bounce effect after animation
+            setTimeout(() => {
+                pet.classList.remove('bounce');
+            }, 2000);
+            
+            // Reset mood after a while if not focusing
+            setTimeout(() => {
+                if (focusTime === 0) {
+                    petMood = Math.max(-2, petMood - 1);
+                    updatePetMood();
+                }
+            }, 5000);
+        }
+
+        function updatePetMood() {
+            const petImage = document.getElementById('pet-image');
+            const happinessDisplay = document.getElementById('pet-happiness');
+            
+            const imageSrc = petImages[petMood];
+            petImage.src = imageSrc;
+            happinessDisplay.innerHTML = `<img src="${imageSrc}" alt="mood" style="width: 40px; height: 40px; object-fit: contain;">`;
+        }
+
+        function startFocus() {
+            // Simulate starting focus mode
+            alert('focus mode would start here! 🎯\n\nthis would open the app to begin a focus session.');
+            
+            // Simulate some stats for demo
+            focusTime += Math.floor(Math.random() * 30) + 10;
+            appsBlocked += Math.floor(Math.random() * 5) + 1;
+            petMood = Math.min(2, petMood + 1);
+            
+            updateStats();
+            updatePetMood();
+        }
+
+        function updateStats() {
+            document.getElementById('focus-time').textContent = focusTime;
+            document.getElementById('apps-blocked').textContent = appsBlocked;
+        }
+
+        function showModal(type) {
+            const messages = {
+                privacy: 'privacy policy would be shown here.\n\nwe respect your privacy and only collect necessary data to help you focus better.',
+                terms: 'terms of service would be shown here.\n\nuse tamagrey responsibly to build better digital habits.',
+                contact: 'contact info would be shown here.\n\nreach out if you need help with your digital wellness journey.'
+            };
+            
+            alert(messages[type]);
+        }
+
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 6) + 's';
+            document.body.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 9000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 2000);
+
+        // Initialize
+        updatePetMood();
+        updateStats();
+
+        // Add some initial stats for demo
+        setTimeout(() => {
+            focusTime = 127;
+            appsBlocked = 8;
+            updateStats();
+        }, 1000);
+    </script>
+</body>
+</html>
