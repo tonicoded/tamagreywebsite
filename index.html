@@ -294,7 +294,7 @@
         /* Features Section */
         .features {
             padding: 120px 0;
-            background: #0a0a0a;
+            
         }
 
         .features-header {
@@ -414,7 +414,6 @@
         /* Stats Section */
         .stats {
             padding: 80px 0;
-            background: #0a0a0a;
             text-align: center;
             position: relative;
             z-index: 10;
@@ -452,6 +451,7 @@
         /* CTA Section */
         .cta-section {
             padding: 120px 0;
+            max-width: 100%;
             background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(0, 122, 255, 0.05));
             text-align: center;
         }
@@ -705,8 +705,9 @@
             </div>
         </section>
 
-        <!-- Stats Section -->
-        <section class="stats">
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
             <h2 class="section-title">the distraction problem</h2>
             <div class="stats-grid">
                 <div class="stat-item">
@@ -726,10 +727,12 @@
                     <span class="stat-label">of work time wasted</span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Features Section -->
-        <section class="features" id="features">
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
             <div class="features-header">
                 <h2 class="section-title">reclaim your time</h2>
                 <p class="section-subtitle">stop losing hours to mindless scrolling. tamagrey helps you build focus through positive reinforcement</p>
@@ -756,44 +759,46 @@
                     <p class="feature-description">prevent the 23-minute refocus penalty after each distraction. maintain deep work states for hours instead of minutes.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- How it works -->
-        <section class="how-it-works" id="how-it-works">
+    <!-- How it works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
             <div class="features-header">
                 <h2 class="section-title">how it works</h2>
                 <p class="section-subtitle">three simple steps to transform your relationship with technology</p>
             </div>
-            
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4 class="step-title">identify distractions</h4>
-                    <p class="step-description">select which apps interrupt your focus most during work, study, or creative sessions</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4 class="step-title">start your session</h4>
-                    <p class="step-description">set your desired duration and let tamagrey intelligently block those distracting applications</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4 class="step-title">watch growth happen</h4>
-                    <p class="step-description">maintain focus and watch your digital companion become healthier, happier, and more vibrant</p>
-                </div>
+        </div>
+        
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4 class="step-title">identify distractions</h4>
+                <p class="step-description">select which apps interrupt your focus most during work, study, or creative sessions</p>
             </div>
-        </section>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4 class="step-title">start your session</h4>
+                <p class="step-description">set your desired duration and let tamagrey intelligently block those distracting applications</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4 class="step-title">watch growth happen</h4>
+                <p class="step-description">maintain focus and watch your digital companion become healthier, happier, and more vibrant</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2 class="cta-title">ready to save 2+ hours daily?</h2>
-                <p class="cta-description">stop losing time to distractions. start building focus habits that actually stick with positive reinforcement instead of willpower.</p>
-                <button class="btn-primary" onclick="downloadApp()">download for ios</button>
-                <p class="hero-status">currently under apple review</p>
-            </div>
-        </section>
-    </div>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">ready to save 2+ hours daily?</h2>
+            <p class="cta-description">stop losing time to distractions. start building focus habits that actually stick with positive reinforcement instead of willpower.</p>
+            <button class="btn-primary" onclick="downloadApp()">download for ios</button>
+            <p class="hero-status">currently under apple review</p>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
